@@ -2,7 +2,8 @@ import cv2
 
 
 # Just add your video file here
-vid_file = cv2.VideoCapture('')
+file_name_for_detection = input()
+vid_file = cv2.VideoCapture(file_name_for_detection)
 
 
 # Pre-Trained classifier
@@ -13,11 +14,10 @@ pedestrian_tracker = cv2.CascadeClassifier('haarcascade_fullbody.xml')
 while True:
     # Read Video
     (read_successful, frame) = vid_file.read()
-    if read_successful:
+    if not read_successful:
         # Convert to greyscale
-        grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    else:
         break
+    grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect Cars & Pedestrian
     cars = car_tracker.detectMultiScale(grayscaled_frame)
@@ -33,7 +33,7 @@ while True:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 255), 2)
 
     # Display the image
-    cv2.imshow('Car & Pedestrian Detector', frame)
+    cv2.imshow('Car & Pedestrian Detector.jpg', frame)
 
     # Hold it so it won't autoclose
     key = cv2.waitKey(1)
