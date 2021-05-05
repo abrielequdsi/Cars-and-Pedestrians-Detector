@@ -14,11 +14,10 @@ pedestrian_tracker = cv2.CascadeClassifier('haarcascade_fullbody.xml')
 while True:
     # Read Video
     (read_successful, frame) = vid_file.read()
-    if read_successful:
+    if not read_successful:
         # Convert to greyscale
-        grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    else:
         break
+    grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detect Cars & Pedestrian
     cars = car_tracker.detectMultiScale(grayscaled_frame)
