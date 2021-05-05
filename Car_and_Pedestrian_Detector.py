@@ -2,7 +2,8 @@ import cv2
 
 
 # Just add your video file here
-vid_file = cv2.VideoCapture('')
+file_name_for_detection = input()
+vid_file = cv2.VideoCapture(file_name_for_detection)
 
 
 # Pre-Trained classifier
@@ -33,7 +34,7 @@ while True:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 255), 2)
 
     # Display the image
-    cv2.imshow('Car & Pedestrian Detector', frame)
+    cv2.imshow('Car & Pedestrian Detector.jpg', frame)
 
     # Hold it so it won't autoclose
     key = cv2.waitKey(1)
